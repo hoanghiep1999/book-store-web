@@ -1,0 +1,37 @@
+.fixed-btn {
+  width: 52px;
+  height: 52px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  border-radius: 50%;
+  border: 2px solid #f75454;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.fixed-btn i {
+  font-size: 22px;
+  color: #f75454;
+}
+
+.fixed-btn:hover {
+  background-color: #f75454;
+}
+
+.fixed-btn:hover i {
+  color: #fff;
+}
+
+@media screen and (max-width: 575px) {
+  .fixed-btn {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+  }
+}

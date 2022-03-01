@@ -1,0 +1,34 @@
+.fixed-cart {
+  width: 52px;
+  height: 52px;
+  background-color:#009e7f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 90px;
+  right: 30px;
+  border-radius: 50%;
+  border: 2px solid #009e7f;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.fixed-cart:hover {
+  background-color:#03b692;
+  border: 2px solid #03b692;
+}
+
+.fixed-cart i {
+  font-size: 22px;
+  color: #fff;
+}
+
+@media screen and (max-width: 575px) {
+  .fixed-cart {
+    width: 50px;
+    height: 50px;
+    bottom: 80px;
+    right: 20px;
+  }
+}

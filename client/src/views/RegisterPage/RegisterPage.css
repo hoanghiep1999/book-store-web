@@ -1,0 +1,141 @@
+.register-page {
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  padding: 35px 0;
+  background-image: linear-gradient(to right, #d3e5e8, #e4f2f4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-page-container {
+  width: 60vw;
+  padding: 60px;
+  background-color: #fff;
+  display: flex;
+  align-items: flex-start;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  border-radius: 8px;
+}
+
+.register-page-img {
+  margin-left: 30px;
+  width: 40%;
+}
+
+.register-page-img a {
+  margin-bottom: 25px;
+}
+
+.register-page-img a:hover {
+  text-decoration: underline;
+}
+
+.register-page-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.register-page-form h3 {
+  font-size: 34px;
+  align-self: center;
+  margin-top: 30px;
+}
+
+.register-page-input {
+  width: 100%;
+  padding: 10px 0;
+  margin: 10px 0;
+  border-bottom: 1px solid #000;
+  display: flex;
+}
+
+.register-page-input input {
+  font-size: 16px;
+  margin-left: 10px;
+  flex: 1;
+}
+
+.register-page-form .error {
+  font-size: 14px;
+  font-weight: bold;
+  color: #f75454;
+}
+
+.register-page-form button {
+  padding: 15px 30px;
+  margin: 20px 0;
+  background-color: #6dabe4;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  align-self: center;
+  transition: all .5s;
+}
+
+.register-page-form button:hover {
+  background-color: #4292dc;
+}
+
+.register-page-form a:last-child {
+  margin-top: 20px;
+  text-decoration: underline;
+}
+
+.register-page-form a:first-child:hover {
+  text-decoration: underline;
+}
+
+.register-page-form a:last-child:hover {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1023px) {
+  .register-page {
+    padding: 30px 0;
+    height: auto;
+  }
+
+  .register-page-container {
+    flex-direction: column;
+    padding: 30px 50px 15px;
+  }
+
+  .register-page-img img {
+    height: 0;
+  }
+
+  .register-page-img, .register-page-form {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .register-page-container {
+    width: 80%;
+    padding: 50px 50px 35px;
+  }
+
+  .register-page-form h3 {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .register-page-container {
+    width: 90%;
+    padding: 30px 30px 20px;
+  }
+
+  .register-page-input input {
+    font-size: 15px;
+  }
+
+  .register-page-form button {
+    padding: 10px 25px;
+  }
+}

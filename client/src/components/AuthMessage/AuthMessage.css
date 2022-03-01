@@ -1,0 +1,54 @@
+.message-container {
+  padding: 60px 0;
+  text-align: center;
+  background-color: #fff6f6;
+}
+
+.message-container h3 {
+  font-size: 22px;
+}
+
+.message-container-link {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.message-container-link a {
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 10px 16px;
+  font-size: 15px;
+  color: #fff;
+  border-radius: 7px;
+}
+
+.message-container-link a:first-child {
+  background-color: #007bff;
+}
+
+.message-container-link a:last-child {
+  background-color: #f29702;
+  margin-left: 14px;
+}
+
+.message-container-link a:first-child:hover {
+  background-color: #0069d9;
+}
+
+.message-container-link a:last-child:hover {
+  background-color: #d88807;
+}
+
+@media screen and (max-width: 767px) {
+  .message-container {
+    padding: 40px 0;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .message-container-link a {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}

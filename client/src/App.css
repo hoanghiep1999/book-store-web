@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: unset;
+}
+
+button, input {
+  outline: none;
+  border: none;
+  font-family: inherit;
+}
+
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Toast css */
+.Toastify .Toastify__toast-container {
+  width: auto;
+}
+
+@media screen and (max-width: 479px) {
+  .Toastify .Toastify__toast-container {
+    width: 100%;
+  }
+
+  .Toastify__toast-body > div:last-child {
+    font-size: 15px;
+  }
+}

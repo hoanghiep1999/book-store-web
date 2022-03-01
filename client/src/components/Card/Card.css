@@ -1,0 +1,126 @@
+.card {
+  padding: 30px;
+  height: 100%;
+  border: 1px solid rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  transition: all .5s;
+}
+
+.card:hover {
+  box-shadow: 0 0 6px rgba(0,0,0,0.7);
+}
+
+.card-link {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-link > img {
+  width: 150px;
+  height: 210px;
+  align-self: center;
+  object-fit: cover;
+}
+
+.card-link .publisher, .card-link .title, .card .price {
+  display: block;
+}
+
+.card-link .publisher {
+  color: #f75454;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin-top: 20px;
+  height: auto;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.card-link .title {
+  font-weight: bold;
+  font-size: 17px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  margin: 10px 0;
+  height: 69px;
+  transition: all .5s;
+}
+
+.card-link .title:hover {
+  color: #f75454;
+}
+
+.card .price {
+  color: #f75454;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.card .cart {
+  font-size: 17px;
+  font-weight: bold;
+  width: fit-content;
+  position: relative;
+  display: inline-block;
+  margin-top: auto;
+  cursor: pointer;
+}
+
+.card .cart::before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: #000;
+  position: absolute;
+  top: 110%;
+  transition: all .2s;
+}
+
+.card .cart:hover::before {
+  width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .card-link > img {
+    width: 60%;
+  }
+
+  .card-link .title {
+    height: 62px;
+  }
+
+  .card .cart {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .card {
+    padding: 20px;
+    align-items: center;
+  }
+
+  .card-link > img {
+    width: 120px;
+    height: 170px;
+    object-fit: cover;
+  }
+
+  .card-link .publisher {
+    display: none;
+  }
+
+  .card-link .title {
+    margin-bottom: 4px;
+    font-size: 16px;
+    text-align: center;
+    -webkit-line-clamp: 2;
+    height: 44px;
+  }
+}

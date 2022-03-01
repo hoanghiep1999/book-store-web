@@ -1,0 +1,151 @@
+.header-search {
+  display: flex;
+  align-items: center;
+  background-color: #f6f5f3;
+  padding: 14px;
+  position: relative;
+}
+
+.header-search i {
+  color: #7c6e65;
+}
+
+.header-search form {
+  margin-left: 34px;
+}
+
+.header-search form input {
+  background-color: #f6f5f3;
+  font-size: 16px;
+  width: 250px;
+  max-width: 100%;
+}
+
+.header-search-list {
+  width: 100%;
+  max-height: 450px;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 14px;
+  box-shadow: 0 15px 20px rgba(0,0,0,0.3);
+  position: absolute;
+  top: 110%;
+  left: 0;
+  z-index: 2;
+  overflow-y: auto;
+}
+
+.header-search-list h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.header-search-item {
+  padding: 10px 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.header-search-item-info {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.header-search-item-info a {
+  font-size: 17px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.header-search-item-info a:hover {
+  color: #f75454;
+}
+
+.header-search-item-info span:last-child {
+  color: #f75454;
+}
+
+.header-search-item button {
+  background-color: #000;
+  color: #fff;
+  padding: 8px 12px;
+  margin-top: 8px;
+  font-size: 14px;
+  border: 1px solid #000;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.header-search-item button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.header-search-item button:hover i {
+  color: #000;
+}
+
+.header-search-item button i {
+  color: #fff;
+  margin-right: 10px;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1159px) {
+  .header-search form {
+    margin-left: 24px;
+  }
+
+  .header-search form input {
+    width: 200px;
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .header-search-list h3 {
+    font-size: 19px;
+  }
+
+  .header-search-item-info a {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header-search {
+    width: 100%;
+  }
+
+  .header-search form {
+    flex: 1;
+  }
+
+  .header-search form input {
+    width: 100%;
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .header-search {
+    padding: 10px;
+  }
+
+  .header-search form {
+    margin-left: 10px;
+  }
+
+  .header-search-list h3 {
+    font-size: 18px;
+  }
+
+  .header-search-item-info {
+    flex-direction: column;
+  }
+
+  .header-search-item-info span:last-child {
+    padding: 6px 0;
+  }
+}
