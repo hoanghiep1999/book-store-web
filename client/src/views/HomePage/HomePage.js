@@ -43,13 +43,13 @@ export default function HomePage () {
 
   useEffect(() => {
     setLoading(true);
-    axios.get('http://localhost:3001/api/category').then(res => {
+    axios.get('https://dhh-book-store-app.herokuapp.com/api/category').then(res => {
       setCategories(res.data);
     }).catch(err => {
       throw err;
     });
 
-    axios.get('http://localhost:3001/api/book').then(res => {
+    axios.get('https://dhh-book-store-app.herokuapp.com/api/book').then(res => {
       setBooks(res.data);
       setLoading(false);
     }).catch(err => {

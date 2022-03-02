@@ -26,7 +26,7 @@ export default function CheckoutPage () {
   const submitForm = (e) => {
     e.preventDefault();
     if(name !== "" && address !== "" && phone !== "") {
-      axios.post(`http://localhost:3001/api/order/new`, {
+      axios.post(`https://dhh-book-store-app.herokuapp.com/api/order/new`, {
         contactInfo: {
           name: name,
           phone: phone,

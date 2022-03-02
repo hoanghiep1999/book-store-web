@@ -1,7 +1,7 @@
 .fixed-btn {
   width: 52px;
   height: 52px;
-  background-color: #fff;
+  background-color: #f75454;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,18 +9,17 @@
   bottom: 30px;
   right: 30px;
   border-radius: 50%;
-  border: 2px solid #f75454;
   cursor: pointer;
   z-index: 1;
 }
 
 .fixed-btn i {
   font-size: 22px;
-  color: #f75454;
+  color: #fff;
 }
 
 .fixed-btn:hover {
-  background-color: #f75454;
+  background-color: #fa6f6f;
 }
 
 .fixed-btn:hover i {

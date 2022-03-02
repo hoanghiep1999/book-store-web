@@ -14,7 +14,7 @@ export default function OrderPage () {
   const user = useSelector(state => state.user)
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/order/${id}`)
+    axios.get(`https://dhh-book-store-app.herokuapp.com/api/order/${id}`)
       .then(res => setOrderData(res.data))
       .catch(err => {
         throw err;

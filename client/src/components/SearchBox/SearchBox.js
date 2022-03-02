@@ -16,7 +16,7 @@ export default function SearchBox () {
 
   useEffect(() => {
     if (keyWord !== "") {
-      axios.get(`http://localhost:3001/api/book/search/${keyWord && keyWord}`)
+      axios.get(`https://dhh-book-store-app.herokuapp.com/api/book/search/${keyWord && keyWord}`)
       .then(res => setSearchList([...res.data]))
       .catch(err => { throw err; })
     }

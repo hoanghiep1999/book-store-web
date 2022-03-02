@@ -28,16 +28,16 @@ export default function DetailPage () {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`http://localhost:3001/api/book/${id}`).then(res => {
+    axios.get(`https://dhh-book-store-app.herokuapp.com/api/book/${id}`).then(res => {
       setBook(res.data);
     });
   }, [id]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/book/list/${book && book.categoryID}`).then(res => {
+    axios.get(`https://dhh-book-store-app.herokuapp.com/api/book/list/${book && book.categoryID}`).then(res => {
       setBooklist(res.data);
     });
-    axios.get(`http://localhost:3001/api/category/${book && book.categoryID}`).then(res => {
+    axios.get(`https://dhh-book-store-app.herokuapp.com/api/category/${book && book.categoryID}`).then(res => {
       setCategory(...res.data);
       setLoading(false);
     });

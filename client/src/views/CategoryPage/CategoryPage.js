@@ -43,12 +43,12 @@ export default function CategoryPage () {
 
   useEffect(() => {
     setLoading(true);
-    axios.get('http://localhost:3001/api/category').then(res => {
+    axios.get('https://dhh-book-store-app.herokuapp.com/api/category').then(res => {
       setCategories(res.data);
     }).catch(err => {
       throw err;
     });
-    axios.get(`http://localhost:3001/api/category/${id}`).then(res => {
+    axios.get(`https://dhh-book-store-app.herokuapp.com/api/category/${id}`).then(res => {
       setCategory(...res.data);
     }).catch(err => {
       throw err;
@@ -56,7 +56,7 @@ export default function CategoryPage () {
   }, [id, name]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/book/list/${category && category.categoryID}`).then(res => {
+    axios.get(`https://dhh-book-store-app.herokuapp.com/api/book/list/${category && category.categoryID}`).then(res => {
       setBooks(res.data);
       setLoading(false);
     }).catch(err => {
@@ -74,7 +74,7 @@ export default function CategoryPage () {
       setBooks([...newBooks]);
     }
     if(sort === "None") {
-      axios.get(`http://localhost:3001/api/book/list/${category && category.categoryID}`).then(res => {
+      axios.get(`https://dhh-book-store-app.herokuapp.com/api/book/list/${category && category.categoryID}`).then(res => {
         setBooks(res.data);
       }).catch(err => {
         throw err;
