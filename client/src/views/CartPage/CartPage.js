@@ -10,7 +10,7 @@ import './CartPage.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-export default function CartPage () {
+export default function CartPage ({children}) {
   const user = useSelector(state => state.user);
   const cart = useSelector(state => state.cart.cartList);
   const dispatch = useDispatch();
@@ -73,6 +73,7 @@ export default function CartPage () {
           </div>
         }
       </div>
+      {children}
       <Footer />
     </>
   );

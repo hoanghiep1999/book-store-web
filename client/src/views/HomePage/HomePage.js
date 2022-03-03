@@ -28,7 +28,7 @@ import SwiperCore, { Pagination } from 'swiper';
 // install Swiper modules
 SwiperCore.use([Pagination]);
 
-export default function HomePage () {
+export default function HomePage ({children}) {
   const [categories, setCategories] = useState([]);
   const [books, setBooks] = useState([]);
 
@@ -39,7 +39,7 @@ export default function HomePage () {
   /* Fix loi khong the scroll duoc */
   useEffect(() => {
     window.scrollTo(0,0);
-  })
+  });
 
   useEffect(() => {
     setLoading(true);
@@ -58,66 +58,75 @@ export default function HomePage () {
   }, []);
 
   useEffect(() => {
-    const list = categories.filter(category => category.categoryName === "Arts & Photography" || 
-      category.categoryName === "Fashion" || 
-      category.categoryName === "Photography & Video" || 
-      category.categoryName === "Study & Teaching");
-    setCategoriesHome(list);
+    if(categories.length !== 0) {
+      const list = categories.filter(category => category.categoryName === "Arts & Photography" || 
+        category.categoryName === "Fashion" || 
+        category.categoryName === "Photography & Video" || 
+        category.categoryName === "Study & Teaching");
+      setCategoriesHome(list);
+    }
   }, [categories]);
 
-  if (loading) return <Loading />
+  if(loading) 
+    return <div className="header-loading-container">
+      <div className="header-loading-label">Welcome to My Book Shop!</div>
+      <svg className="svgLoader" viewBox="0 0 100 100">
+        <path ng-attr-d="{{config.pathCmd}}" ng-attr-fill="{{config.color}}" stroke="none" d="M10 50A40 40 0 0 0 90 50A40 42 0 0 1 10 50" fill="#f6f5f3" transform="rotate(179.719 50 51)"><animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 51;360 50 51" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform></path>
+      </svg>
+    </div>
   else
-  return (
-    <>
-      <Header />
-      <Banner />
-      <div className="homepage-container">
-        <ul className="homepage-container-list">
-        {
-          categoriesHome.map(category => {
-            return (
-              <li className="homepage-container-item" key={category.categoryID}>
-                <div className="homepage-container-top">
-                  <span>{category.categoryName}</span>
-                  <div className="homepage-container-top-link">
-                    <Link to={`/category/${category.categoryID}/${category.categoryName.replaceAll(/\s/g, '-')}`}>View All</Link>
-                    <i className="fas fa-angle-right"></i>
+    return (
+      <>
+        <Header />
+        <Banner />
+        <div className="homepage-container">
+          <ul className="homepage-container-list">
+          {
+            categoriesHome.length !== 0 ? categoriesHome.map(category => {
+              return (
+                <li className="homepage-container-item" key={category.categoryID}>
+                  <div className="homepage-container-top">
+                    <span>{category.categoryName}</span>
+                    <div className="homepage-container-top-link">
+                      <Link to={`/category/${category.categoryID}/${category.categoryName.replaceAll(/\s/g, '-')}`}>View All</Link>
+                      <i className="fas fa-angle-right"></i>
+                    </div>
                   </div>
-                </div>
-                <ul className="homepage-container-bottom">
-                  <Swiper slidesPerView={4} spaceBetween={30} pagination={{clickable: true,}} modules={[Pagination]} breakpoints={
+                  <ul className="homepage-container-bottom">
+                    <Swiper slidesPerView={4} spaceBetween={30} pagination={{clickable: true,}} modules={[Pagination]} breakpoints={
+                      {
+                        "320": {
+                          "slidesPerView": 1,
+                          "spaceBetween": 8
+                        },
+                        "480": {
+                          "slidesPerView": 3,
+                          "spaceBetween": 8
+                        },
+                        "1024": {
+                          "slidesPerView": 4,
+                          "spaceBetween": 15
+                        }
+                      }} className="mySwiper">
                     {
-                      "320": {
-                        "slidesPerView": 1,
-                        "spaceBetween": 8
-                      },
-                      "480": {
-                        "slidesPerView": 3,
-                        "spaceBetween": 8
-                      },
-                      "1024": {
-                        "slidesPerView": 4,
-                        "spaceBetween": 15
-                      }
-                    }} className="mySwiper">
-                  {
-                    books.filter(book => book.categoryID === category.categoryID).slice(0,8).map((book, index) => {
-                      return (
-                        <SwiperSlide key={index}>
-                          <Card book={book} /> 
-                        </SwiperSlide>
-                      );
-                    })
-                  }
-                  </Swiper>
-                </ul>
-              </li>
-            );
-          })
-        }
-        </ul>
-      </div>
-      <Footer />
-    </>
-  );
+                      books.length !== 0 ? books.filter(book => book.categoryID === category.categoryID).slice(0,8).map((book, index) => {
+                        return (
+                          <SwiperSlide key={index}>
+                            <Card book={book} /> 
+                          </SwiperSlide>
+                        );
+                      }) : <Loading />
+                    }
+                    </Swiper>
+                  </ul>
+                </li>
+              );
+            }) : <Loading />
+          }
+          </ul>
+        </div>
+        {children}
+        <Footer />
+      </>
+    );
 }

@@ -23,19 +23,17 @@ function App() {
       <ToastContainer position="top-center" className="toast-container" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable/>
       
       <Routes>
-        <Route path="/" exact element={<HomePage />} />
-        <Route path="/category/:id/:name" exact element={<CategoryPage />} />
-        <Route path="/detail/:id/:title" exact element={<DetailPage />} />
-        <Route path="/cart" exact element={<CartPage />} />
-        <Route path="/checkout" exact element={<CheckoutPage />} />
-        <Route path="/order-received/:id" exact element={<OrderPage />} />
+        <Route path="/" exact element={<HomePage><FixedButton /><FixedCart /></HomePage>} />
+        <Route path="/category/:id/:name" exact element={<CategoryPage><FixedButton /><FixedCart /></CategoryPage>} />
+        <Route path="/detail/:id/:title" exact element={<DetailPage><FixedButton /><FixedCart /></DetailPage>} />
+        <Route path="/cart" exact element={<CartPage><FixedButton /></CartPage>} />
+        <Route path="/checkout" exact element={<CheckoutPage><FixedButton /><FixedCart /></CheckoutPage>} />
+        <Route path="/order-received/:id" exact element={<OrderPage><FixedButton /></OrderPage>} />
 
         <Route path="/login" exact element={<LoginPage />} />
         <Route path="/register" exact element={<RegisterPage />} />
       </Routes>
-      
-      <FixedButton />
-      <FixedCart />
+
     </ScrollToTop>
   );
 }

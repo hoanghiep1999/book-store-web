@@ -36,6 +36,7 @@ export default function Header () {
 
   useEffect(() => {
     setToggleNavBar(false);
+    setToggleItem1(false);
   }, [pathname])
 
   return (
@@ -86,11 +87,14 @@ export default function Header () {
           <li className="header-bottom-item">
             <Link to="/">Home</Link>
           </li>
-          <li className="header-bottom-item header-bottom-item--has-child" onClick={() => setToggleItem1(!toggleItem1)}>
-            <span>Categories</span> <i className="fas fa-sort-up" style={toggleItem1 ? {display: "inline-block"} : {display: "none", position: "relative", top: "5px"}}></i> <i className="fas fa-sort-down" style={toggleItem1 ? {display: "none"} : {display: "inline-block"}}></i>
+          <li className="header-bottom-item header-bottom-item--has-child" >
+            <span onClick={(e) => {
+              e.stopPropagation();
+              setToggleItem1(!toggleItem1);
+            }}>Categories</span> <i className="fas fa-sort-up" style={toggleItem1 ? {display: "inline-block"} : {display: "none", position: "relative", top: "5px"}}></i> <i className="fas fa-sort-down" style={toggleItem1 ? {display: "none"} : {display: "inline-block"}}></i>
             <ul className={toggleItem1 ? "header-child-list active" : "header-child-list"}>
               {
-                categories && categories.map(category => {
+                categories.length !== 0 && categories.map(category => {
                   return (
                     <li className="header-child-item" key={category.categoryID}>
                       <Link to={`/category/${category.categoryID}/${category.categoryName.replaceAll(/\s/g, '-')}`}>{category.categoryName}</Link>
@@ -101,8 +105,11 @@ export default function Header () {
             </ul>
           </li>
           <li className="header-bottom-item"><span>Contacts</span></li>
-          <li className="header-bottom-item header-bottom-item--has-child" onClick={() => setToggleItem2(!toggleItem2)}>
-            <span>Others</span> <i className="fas fa-sort-up" style={toggleItem2 ? {display: "inline-block"} : {display: "none", position: "relative", top: "5px"}}></i> <i className="fas fa-sort-down" style={toggleItem2 ? {display: "none"} : {display: "inline-block"}}></i>
+          <li className="header-bottom-item header-bottom-item--has-child">
+            <span onClick={(e) => {
+              e.stopPropagation();
+              setToggleItem2(!toggleItem2)
+            }}>Others</span> <i className="fas fa-sort-up" style={toggleItem2 ? {display: "inline-block"} : {display: "none", position: "relative", top: "5px"}}></i> <i className="fas fa-sort-down" style={toggleItem2 ? {display: "none"} : {display: "inline-block"}}></i>
             <ul className={toggleItem2 ? "header-child-list active" : "header-child-list"}>
               <li className="header-child-item">
                 <Link to="/">404</Link>

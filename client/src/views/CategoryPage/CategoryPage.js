@@ -27,22 +27,20 @@ import SwiperCore, { Pagination } from 'swiper';
 // install Swiper modules
 SwiperCore.use([Pagination]);
 
-export default function CategoryPage () {
+export default function CategoryPage ({children}) {
   const {id, name} = useParams();
   const {pathname} = useLocation();
 
   const [category, setCategory] = useState();
   const [categories, setCategories] = useState([]);
-  const [books, setBooks] = useState();
+  const [books, setBooks] = useState([]);
   const [sort, setSort] = useState("None");
 
   const [toggle, setToggle] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [showMoreIndex, setShowMoreIndex] = useState(1);
   const numGroup = 8;
 
   useEffect(() => {
-    setLoading(true);
     axios.get('https://dhh-book-store-app.herokuapp.com/api/category').then(res => {
       setCategories(res.data);
     }).catch(err => {
@@ -58,7 +56,6 @@ export default function CategoryPage () {
   useEffect(() => {
     axios.get(`https://dhh-book-store-app.herokuapp.com/api/book/list/${category && category.categoryID}`).then(res => {
       setBooks(res.data);
-      setLoading(false);
     }).catch(err => {
       throw err;
     })
@@ -92,16 +89,17 @@ export default function CategoryPage () {
     return Math.ceil(books && books.length / numGroup);
   }, [books]);
 
-  if (loading) return <Loading />
-  else
   return (
     <>
       <Header />
       <div className="category-page">
         <div className="category-page-top">
-          <Link to="/">Home</Link>
-          <i className="fas fa-angle-right"></i>
-          <Link to={`/category/${id}/${name}`}>{category && category.categoryName}</Link>
+          {
+            category ? <><Link to="/">Home</Link>
+              <i className="fas fa-angle-right"></i>
+              <Link to={`/category/${id}/${name}`}>{category && category.categoryName}</Link></> 
+            : <Loading />
+          }
         </div>
         <div className="category-page-bottom">
           <div className="category-page-bottom-category">
@@ -112,18 +110,18 @@ export default function CategoryPage () {
             </div>
             <ul className={toggle ? "category-page-bottom-category-list collapse" : "category-page-bottom-category-list"}>
               {
-                categories.map(category => {
+                categories.length !== 0 ? categories.map(category => {
                   return (
                     <li className={category.categoryID === id ? "category-page-bottom-category-item active" : "category-page-bottom-category-item"} key={category.categoryID}>
                       <Link to={`/category/${category.categoryID}/${category.categoryName.replaceAll(/\s/g, '-')}`}>{category.categoryName}</Link>
                     </li>
                   );
-                })
+                }) : <li className="category-page-bottom-category-item"><Loading /></li>
               }
             </ul>
           </div>
           { 
-            books && <div className="category-page-bottom-product">
+            books.length !== 0 ? <div className="category-page-bottom-product">
               <div className="category-page-bottom-product-label">
                 <span>Show: {books.slice(0, numGroup * showMoreIndex).length}/{books.length} results</span>
                 <select onChange={(e) => setSort(e.target.value)}>
@@ -174,10 +172,11 @@ export default function CategoryPage () {
                 books.length >= numGroup && showMoreIndex < showMoreTotal && <button onClick={() => setShowMoreIndex(showMoreIndex + 1)}>Show More</button>
               } 
               </div>
-            </div>
+            </div> : <div className="category-page-bottom-product" style={{width: "100%", textAlign: "center"}}><Loading /></div>
           }
         </div>
       </div>
+      {children}
       <Footer />
     </>
   );

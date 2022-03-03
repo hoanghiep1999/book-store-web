@@ -11,7 +11,7 @@ import './CheckoutPage.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function CheckoutPage () {
+export default function CheckoutPage ({children}) {
   const [name, setName] = useState("");
   const [country, setCountry] = useState("Hà Nội");
   const [address, setAddress] = useState("");
@@ -153,9 +153,8 @@ export default function CheckoutPage () {
             </div>
           }
         </div>
+        {children}
       <Footer />
     </>
   );
 }
-
-/* onClick={() => navigate('/order-received')}*/

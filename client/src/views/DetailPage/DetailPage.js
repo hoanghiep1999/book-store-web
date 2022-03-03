@@ -13,21 +13,19 @@ import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import { addCart, removeCart } from '../../actions/CartActions';
 
-export default function DetailPage () {
+export default function DetailPage ({children}) {
   const {id} = useParams();
   const [book, setBook] = useState();
   const [category, setCategory] = useState();
   const [bookList, setBooklist] = useState();
 
   const [tabItem, setTabItem] = useState(1);
-  const [loading, setLoading] = useState(false);
 
   const user = useSelector(state => state.user);
   const cart = useSelector(state => state.cart);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setLoading(true);
     axios.get(`https://dhh-book-store-app.herokuapp.com/api/book/${id}`).then(res => {
       setBook(res.data);
     });
@@ -39,18 +37,15 @@ export default function DetailPage () {
     });
     axios.get(`https://dhh-book-store-app.herokuapp.com/api/category/${book && book.categoryID}`).then(res => {
       setCategory(...res.data);
-      setLoading(false);
     });
   }, [book]);
 
-  if (loading) return <Loading />
-  else
   return (
     <>
       <Header />
       <div className="detail-page">
       {
-        book && category && (
+        (book && category) ? (
           <>
             <div className="detail-page-top">
               <Link to="/">Home</Link>
@@ -114,9 +109,10 @@ export default function DetailPage () {
               </div>
             </div>
           </>
-        )
+        ) : <div style={{padding: "20px 0"}}><Loading /></div>
       }
       </div>
+      {children}
       <Footer />
     </>
   );

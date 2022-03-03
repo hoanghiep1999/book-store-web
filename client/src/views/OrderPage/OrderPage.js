@@ -8,7 +8,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 
-export default function OrderPage () {
+export default function OrderPage ({children}) {
   const {id} = useParams();
   const [orderData, setOrderData] = useState();
   const user = useSelector(state => state.user)
@@ -88,6 +88,7 @@ export default function OrderPage () {
           }
         </div>
       </div>
+      {children}
       <Footer />
     </>
   );
