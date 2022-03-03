@@ -8,7 +8,7 @@ export const cartReducer = (state = initState, action) => {
   switch(action.type) {
     case "ADD_CART": {
       toast.success(`"${action.payload.title}" has been added to your cart!`);
-      return {...state, cartList: [...state.cartList, {...action.payload, quantity: 1}]};
+      return {...state, cartList: [{...action.payload, quantity: 1}, ...state.cartList]};
     }
     case "REMOVE_CART": {
       toast.success(`"${action.payload.title}" has been removed!`);
