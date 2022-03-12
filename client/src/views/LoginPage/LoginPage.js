@@ -84,7 +84,7 @@ export default function LoginPage () {
       <form className="login-page-form" data-aos="fade-left" onSubmit={submitForm}>
         <h3>Sign in</h3>
         <div className="login-page-input">
-          <i className="fas fa-user"></i>
+          <i className="fa-solid fa-envelope"></i>
           <input type="text" placeholder="Your email..." value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} />
         </div>
         <span className="error">{errMessage && errMessage.email}</span>

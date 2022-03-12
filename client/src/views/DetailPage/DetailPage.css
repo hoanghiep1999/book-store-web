@@ -78,10 +78,10 @@
 
 .detail-page-info .cart .cart-btn {
   margin-top: 16px;
-  padding: 20px 70px;
+  padding: 14px 40px;
   background-color: #161619;
   color: #fff;
-  font-size: 15px;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -102,7 +102,7 @@
 .detail-page-tab-item {
   display: inline-block;
   margin: 0 22px;
-  padding: 22px 0;
+  padding: 14px 0;
   cursor: pointer;
   color: #7c6e65;
   font-weight: bold;

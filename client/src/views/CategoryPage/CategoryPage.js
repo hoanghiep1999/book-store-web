@@ -34,7 +34,7 @@ export default function CategoryPage ({children}) {
   const [category, setCategory] = useState();
   const [categories, setCategories] = useState([]);
   const [books, setBooks] = useState([]);
-  const [sort, setSort] = useState("None");
+  const [sort, setSort] = useState("");
 
   const [toggle, setToggle] = useState(false);
   const [showMoreIndex, setShowMoreIndex] = useState(1);
@@ -47,6 +47,7 @@ export default function CategoryPage ({children}) {
       throw err;
     });
     axios.get(`https://dhh-book-store-app.herokuapp.com/api/category/${id}`).then(res => {
+      setBooks([]);
       setCategory(...res.data);
     }).catch(err => {
       throw err;
@@ -121,7 +122,7 @@ export default function CategoryPage ({children}) {
             </ul>
           </div>
           { 
-            books.length !== 0 ? <div className="category-page-bottom-product">
+            <div className="category-page-bottom-product">
               <div className="category-page-bottom-product-label">
                 <span>Show: {books.slice(0, numGroup * showMoreIndex).length}/{books.length} results</span>
                 <select onChange={(e) => setSort(e.target.value)}>
@@ -140,7 +141,7 @@ export default function CategoryPage ({children}) {
                     },
                   }} className="mySwiper swiperResponsive">
                 {
-                  books.slice(0, numGroup * showMoreIndex).map((book, index) => {
+                  books.length !== 0 ? books.slice(0, numGroup * showMoreIndex).map((book, index) => {
                     return (
                       <li className="category-page-bottom-product-item" key={index}>
                         <SwiperSlide key={index}>
@@ -148,7 +149,7 @@ export default function CategoryPage ({children}) {
                         </SwiperSlide>
                       </li>
                     );
-                  })
+                  }) : <div className="category-page-bottom-product" style={{width: "100%", textAlign: "center"}}><Loading /></div>
                 }
                 </Swiper>
               }
@@ -156,13 +157,13 @@ export default function CategoryPage ({children}) {
               {
                 <div className="listResponsive">
                 {
-                  books.slice(0, numGroup * showMoreIndex).map((book, index) => {
+                  books.length !== 0 ? books.slice(0, numGroup * showMoreIndex).map((book, index) => {
                     return (
                       <li className="category-page-bottom-product-item" key={index}>
                         <Card book={book} />
                       </li>
                     );
-                  })
+                  }) : <div className="category-page-bottom-product" style={{width: "100%", textAlign: "center"}}><Loading /></div>
                 }
                 </div>
               }
@@ -172,7 +173,7 @@ export default function CategoryPage ({children}) {
                 books.length >= numGroup && showMoreIndex < showMoreTotal && <button onClick={() => setShowMoreIndex(showMoreIndex + 1)}>Show More</button>
               } 
               </div>
-            </div> : <div className="category-page-bottom-product" style={{width: "100%", textAlign: "center"}}><Loading /></div>
+            </div>
           }
         </div>
       </div>

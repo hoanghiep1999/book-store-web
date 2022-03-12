@@ -97,7 +97,7 @@ export default function CheckoutPage ({children}) {
                     </div>
                     <div className="checkout-page-form-group">
                       <span>Phone <span>*</span></span>
-                      <input type="tel" id="phone" name="phone" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}" placeholder="Your phone... (ex: 0123-456-789)" onChange={(e) => setPhone(e.target.value)} required/>
+                      <input type="tel" id="phone" name="phone" placeholder="Your phone..." onChange={(e) => setPhone(e.target.value)} required/>
                     </div>
                     <div className="checkout-page-form-group">
                       <span>Email <span>*</span></span>

@@ -102,16 +102,16 @@ export default function RegisterPage () {
         </div>
         <span className="error">{errMessage && errMessage.name}</span>
         <div className="register-page-input">
-          <i className="fas fa-user"></i>
+          <i className="fa-solid fa-envelope"></i>
           <input type="text" placeholder="Your email..." value={registerEmail} onChange={(e) => setRegisterEmail(e.target.value)} />
         </div>
         <span className="error">{errMessage && errMessage.email}</span>
         <div className="register-page-input">
           <i className="fas fa-lock"></i>
-          <input type="password" placeholder="Your password..." value={registerPass} onChange={(e) => setRegisterPass(e.target.value)} />
+          <input type="password" placeholder="Your password... (More than 6 characters)" value={registerPass} onChange={(e) => setRegisterPass(e.target.value)} />
         </div>
         <span className="error">{errMessage && errMessage.pass}</span>
-        <div className="login-page-input">
+        <div className="register-page-input">
           <i className="fas fa-lock"></i>
           <input type="password" placeholder="Your repeat password..." value={registerCheckPass} onChange={(e) => setRegisterCheckPass(e.target.value)} />
         </div>
