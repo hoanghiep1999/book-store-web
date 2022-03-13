@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './LoginPage.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -14,6 +14,26 @@ export default function LoginPage () {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const inputParentElement = document.querySelectorAll('.login-page-input');
+    const inputElement = document.querySelectorAll('input');
+    inputElement.forEach((input, index) => {
+      input.addEventListener('focus', () => {
+        inputParentElement[index].style.border = '2px solid rgba(0,0,0,0.6)';
+      })
+      input.addEventListener('blur', () => {
+        inputParentElement[index].style.border = '2px solid rgba(0,0,0,0.1)';
+      })
+    });
+
+    return () => {
+      inputElement.forEach((input) => {
+        input.removeEventListener('focus');
+        input.removeEventListener('blur');
+      })
+    }
+  }, []);
 
   const validation = () => {
     const message = {
