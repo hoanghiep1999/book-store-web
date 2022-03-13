@@ -24,9 +24,10 @@
 .homepage-container-top-link {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
-.homepage-container-top-link:hover {
+.homepage-container-top-link:hover a, .homepage-container-top-link:hover i {
   color: #f75454;
 }
 
