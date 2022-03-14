@@ -42,7 +42,7 @@ export default function OrderPage ({children}) {
                 <div className="order-info-group">
                   <span>Date</span>
                   <span>{orderData.createAt.slice(0,10).split('-').reverse().join('/') + "  "} 
-                    {new Number(orderData.createAt.slice(11,19).split(':')[0]) + 7 + ":" + orderData.createAt.slice(11,19).split(':')[1] + ":" + orderData.createAt.slice(11,19).split(':')[2]}
+                    {Number(orderData.createAt.slice(11,19).split(':')[0]) + 7 + ":" + orderData.createAt.slice(11,19).split(':')[1] + ":" + orderData.createAt.slice(11,19).split(':')[2]}
                   </span>
                 </div>
                 <div className="order-info-group">
