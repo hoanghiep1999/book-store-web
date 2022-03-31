@@ -27,13 +27,6 @@ export default function RegisterPage () {
         inputParentElement[index].style.border = '2px solid rgba(0,0,0,0.1)';
       })
     });
-
-    return () => {
-      inputElement.forEach((input) => {
-        input.removeEventListener('focus');
-        input.removeEventListener('blur');
-      })
-    }
   }, []);
 
   const validation = () => {
