@@ -5,7 +5,7 @@ const initState = {
 export const userReducer = (state = initState, action) => {
   switch (action.type) {
     case "SET_USER": {
-      return {...state, userEmail: action.payload.email};
+      return {...state, userEmail: action.payload};
     }
     case "REMOVE_USER": {
       return {...state, userEmail: ""};

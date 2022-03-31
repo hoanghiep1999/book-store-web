@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const OrderModel = require('../models/Order');
+const verifyToken = require('../middleware/auth');
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', verifyToken, async (req, res) => {
   await OrderModel.findById(req.params.id, (err, result) => {
     if(err) 
       throw err;

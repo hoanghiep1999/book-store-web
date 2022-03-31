@@ -29,6 +29,13 @@ export default function DetailPage ({children}) {
     axios.get(`https://dhh-book-store-app.herokuapp.com/api/book/${id}`).then(res => {
       setBook(res.data);
     });
+
+    return () => {
+      setBook();
+      setBooklist();
+      setCategory();
+      setTabItem(1);
+    }
   }, [id]);
 
   useEffect(() => {

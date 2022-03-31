@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './LoginPage.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../actions/UserActions';
 import { toast } from 'react-toastify';
@@ -59,13 +60,16 @@ export default function LoginPage () {
     e.preventDefault();
     const errorMessage = validation();
     if(!errorMessage.name && !errorMessage.email && !errorMessage.pass && !errorMessage.checkPass) {
-      axios.post('https://dhh-book-store-app.herokuapp.com/api/user/login', {
+      axios.post('http://localhost:3001/api/user/login', {
         email: loginEmail,
         passWord: loginPassword,
       }).then(res => {
         setErrMessage({...errorMessage});
         if(typeof (res.data) === 'object') {
-          dispatch(setUser(res.data))
+          console.log(res.data);
+          Cookies.set('accessToken', res.data.accessToken, { secure: true }, { path: '' }, { expires: 1/48 });
+          Cookies.set('refreshToken', res.data.refreshToken, { secure: true }, { path: '' }, { expires: 1/48 });
+          dispatch(setUser(res.data.email));
           setResMessage();
           setLoginEmail("");
           setLoginPassword("");

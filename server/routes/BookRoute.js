@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const BookModel = require('../models/Book');
+const verifyToken = require('../middleware/auth');
 
-router.get('/', async (req, res) => {
+router.get('/', verifyToken, async (req, res) => {
   await BookModel.find({}, (err, result) => {
     if(err)
       throw err;
@@ -15,7 +16,7 @@ router.get('/', async (req, res) => {
 })
 
 /* Lay danh sach book theo categoryID */
-router.get('/list/:id', async (req, res) => {
+router.get('/list/:id', verifyToken, async (req, res) => {
   await BookModel.find({categoryID: req.params.id}, (err, result) => {
     if(err)
       throw err;
@@ -26,7 +27,7 @@ router.get('/list/:id', async (req, res) => {
   .clone().catch(function(err){ console.log(err)})
 })
 
-router.get('/search/:title', async (req, res) => {
+router.get('/search/:title', verifyToken, async (req, res) => {
   var regex = new RegExp(req.params.title, 'i');
   await BookModel.find({title: regex}, (err, result) => {
     if(err)
@@ -40,7 +41,7 @@ router.get('/search/:title', async (req, res) => {
 })
 
 /* Lay chi tiet 1 book theo _id */
-router.get('/:id', async (req, res) => {
+router.get('/:id', verifyToken, async (req, res) => {
   await BookModel.findById(req.params.id, (err, result) => {
     if(err)
       throw err;

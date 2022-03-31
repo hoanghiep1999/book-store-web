@@ -73,14 +73,14 @@ export default function RegisterPage () {
     e.preventDefault();
     const errorMessage = validation();
     if(!errorMessage.name && !errorMessage.email && !errorMessage.pass && !errorMessage.checkPass) {
-      axios.post('https://dhh-book-store-app.herokuapp.com/api/user/new', {
+      axios.post('http://localhost:3001/api/user/new', {
         userName: registerName,
         email: registerEmail,
         passWord: registerPass,
         createAt: Date.now()
       }).then(res => {
         if(typeof (res.data) === 'object') {
-          dispatch(setUser(res.data))
+          dispatch(setUser(res.data.email))
           setErrMessage({...errorMessage});
           setRegisterName("");
           setRegisterEmail("");

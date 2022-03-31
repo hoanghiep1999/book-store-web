@@ -55,6 +55,13 @@ export default function HomePage ({children}) {
     }).catch(err => {
       throw err;
     });
+
+    return () => {
+      setCategories([]);
+      setBooks([]);
+      setCategoriesHome([]);
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
