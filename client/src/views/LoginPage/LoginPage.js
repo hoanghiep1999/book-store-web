@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '../../actions/UserActions';
 import { toast } from 'react-toastify';
 
-export default function LoginPage () {
+export default function LoginPage() {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [errMessage, setErrMessage] = useState({email: "", pass: "", checkPass: ""});
@@ -89,31 +89,33 @@ export default function LoginPage () {
     }
   }
 
-  return <div className="login-page">
-    <div className="login-page-container">
-      <div className="login-page-img" data-aos="fade-right">
-        <Link to="/">
-          <i className="fas fa-arrow-left"></i>
-          <span style={{marginLeft: "10px"}}>Back to home page</span>
-        </Link>
-        <img src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signin-image.jpg" alt="" />
+  return (
+    <div className="login-page">
+      <div className="login-page-container">
+        <Link to="/" className="login-link login-link--homepage"><i className="fa-solid fa-arrow-left"></i><span>Back to home page</span></Link>
+        <h2>Login</h2>
+        <form className="login-form" onSubmit={submitForm}>
+          <div className="login-form-group">
+            <label for="email" className="login-form-label">Email</label>
+            <div className="login-form-wrap">
+              <i className="fa-solid fa-envelope"></i>
+              <input type="text" id="email" autoComplete="off" placeholder="Your email..." value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} className="login-form-input" />
+            </div>
+            <span className="error">{errMessage && errMessage.email}</span>
+          </div>
+          <div className="login-form-group">
+            <label for="password" className="login-form-label">Password</label>
+            <div className="login-form-wrap">
+              <i className="fa-solid fa-lock"></i>
+              <input type="password" id="password" placeholder="Your password..." value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} className="login-form-input" />
+            </div>
+            <span className="error">{errMessage && errMessage.pass}</span>
+          </div>
+          <button type="submit" className="login-form-btn">Login</button>
+          <span className="res-err">{resMessage && resMessage}</span>
+        </form>
+        <Link to="/register" className="login-link login-link--signup"><span>Create an account</span></Link>
       </div>
-      <form className="login-page-form" data-aos="fade-left" onSubmit={submitForm}>
-        <h3>Sign in</h3>
-        <div className="login-page-input">
-          <i className="fa-solid fa-envelope"></i>
-          <input type="text" placeholder="Your email..." value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} />
-        </div>
-        <span className="error">{errMessage && errMessage.email}</span>
-        <div className="login-page-input">
-          <i className="fas fa-lock"></i>
-          <input type="password" placeholder="Your password..." value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} />
-        </div>
-        <span className="error">{errMessage && errMessage.pass}</span>
-        <button type="submit">Sign in</button>
-        <span className="res-err">{resMessage && resMessage}</span>
-        <Link to="/register">Create an account</Link>
-      </form>
     </div>
-  </div>
+  );
 }

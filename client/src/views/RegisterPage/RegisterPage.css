@@ -1,145 +1,140 @@
 .register-page {
   width: 100%;
   min-height: 100vh;
-  height: auto;
   padding: 35px 0;
-  background-image: linear-gradient(to right, #d3e5e8, #e4f2f4);
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url('https://colorlib.com/etc/lf/Login_v4/images/bg-01.jpg');
+  object-fit: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .register-page-container {
-  width: 60vw;
-  padding: 60px;
+  width: 40vw;
+  padding: 65px 55px 55px;
   background-color: #fff;
+  border-radius: 10px;
   display: flex;
-  align-items: flex-start;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  border-radius: 8px;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
-.register-page-img {
-  margin-left: 30px;
-  width: 40%;
+.register-link {
+  transition: all .3s;
 }
 
-.register-page-img a {
-  margin-bottom: 25px;
+.register-link span {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 16px;
 }
 
-.register-page-img a:hover {
+.register-link--homepage {
+  align-self: flex-start;
+}
+
+.register-link--homepage:hover span {
   text-decoration: underline;
 }
 
-.register-page-form {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.register-link--signup {
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
-.register-page-form h3 {
-  font-size: 34px;
-  align-self: center;
+.register-link--signup:hover {
+  color: #a64bf4;
+}
+
+.register-page-container h2 {
+  margin: 30px 0;
+  color: #333;
+}
+
+.register-form {
+  width: 100%;
+}
+
+.register-form-group:not(:first-child) {
   margin-top: 30px;
 }
 
-.register-page-input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 20px;
-  border: 2px solid rgba(0,0,0,0.1);
+.register-form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.register-form-wrap {
+  padding: 10px 0;
+  border-bottom: 2px solid #d9d9d9;
   display: flex;
   align-items: center;
-  border-radius: 6px;
-  transition: all .5s;
 }
 
-.register-page-input input {
-  font-size: 16px;
-  margin-left: 10px;
+.register-form-icon {
+  color: #333;
+}
+
+.register-form-input {
   flex: 1;
-}
-
-.register-page-form .error {
-  font-size: 15px;
-  font-weight: bold;
-  color: #f75454;
-  margin-top: 8px;
-}
-
-.register-page-form button {
-  padding: 15px 30px;
-  margin: 20px 0;
-  background-color: #6dabe4;
-  color: #fff;
+  margin-left: 12px;
   font-size: 16px;
-  border-radius: 6px;
+  font-weight: bold;
+  color: #333;
+}
+
+.register-form-group .error {
+  display: block;
+  margin-top: 10px;
+  color: #f75454;
+  font-weight: bold;
+}
+
+.register-form .res-err {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #f75454;
+  margin-bottom: 20px;
+}
+
+.register-form-btn {
+  width: 100%;
+  margin: 32px 0 20px;
+  padding: 15px 0;
+  background: -webkit-linear-gradient(right,#00dbde,#fc00ff);
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 12px;
   cursor: pointer;
-  align-self: center;
-  transition: all .5s;
+  box-shadow: 0 5px 30px 0 rgb(3 216 222 / 20%);
+  opacity: 1;
+  transition: all .4s;
 }
 
-.register-page-form button:hover {
-  background-color: #4292dc;
-}
-
-.register-page-form a:last-child {
-  margin-top: 20px;
-  text-decoration: underline;
-}
-
-.register-page-form a:first-child:hover {
-  text-decoration: underline;
-}
-
-.register-page-form a:last-child:hover {
-  text-decoration: none;
+.register-form-btn:hover {
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 1023px) {
-  .register-page {
-    padding: 30px 0;
-    height: auto;
-  }
-
-  .register-page-container {
-    flex-direction: column;
-    padding: 30px 50px 15px;
-  }
-
-  .register-page-img img {
-    height: 0;
-  }
-
-  .register-page-img, .register-page-form {
-    width: 100%;
-  }
+  
 }
 
 @media screen and (max-width: 767px) {
-  .register-page-container {
-    width: 80%;
-    padding: 50px 50px 35px;
-  }
-
-  .register-page-form h3 {
-    font-size: 30px;
-  }
+  
 }
 
 @media screen and (max-width: 479px) {
-  .register-page-container {
-    width: 90%;
-    padding: 30px 30px 20px;
-  }
-
-  .register-page-input input {
-    font-size: 15px;
-  }
-
-  .register-page-form button {
-    padding: 10px 25px;
-  }
+  
 }

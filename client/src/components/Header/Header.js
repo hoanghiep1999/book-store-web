@@ -23,7 +23,7 @@ export default function Header () {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    axios.get('https://dhh-book-store-app.herokuapp.com/api/category').then(res => {
+    axios.get('http://localhost:3001/api/category').then(res => {
       setCategories(res.data);
     }).catch(err => {
       throw err;

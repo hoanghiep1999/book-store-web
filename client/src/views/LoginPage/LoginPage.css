@@ -1,154 +1,128 @@
 .login-page {
   width: 100%;
   min-height: 100vh;
+  padding: 35px 0;
   height: auto;
-  background-image: linear-gradient(to right, #d3e5e8, #e4f2f4);
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url('https://colorlib.com/etc/lf/Login_v4/images/bg-01.jpg');
+  object-fit: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .login-page-container {
-  width: 60%;
-  padding: 60px;
+  width: 40vw;
+  padding: 65px 55px 55px;
   background-color: #fff;
+  border-radius: 10px;
   display: flex;
-  align-items: flex-start;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  border-radius: 8px;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
-.login-page-img {
-  width: 40%;
+.login-link {
+  transition: all .3s;
 }
 
-.login-page-img a {
-  margin-bottom: 25px;
+.login-link span {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 16px;
 }
 
-.login-page-img a:hover {
+.login-link--homepage {
+  align-self: flex-start;
+}
+
+.login-link--homepage:hover span {
   text-decoration: underline;
 }
 
-.login-page-form {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.login-link--signup {
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
-.login-page-form h3 {
-  font-size: 34px;
-  align-self: center;
+.login-link--signup:hover {
+  color: #a64bf4;
 }
 
-.login-page-input {
+.login-page-container h2 {
+  margin: 30px 0;
+  color: #333;
+}
+
+.login-form {
   width: 100%;
-  padding: 10px;
-  margin-top: 20px;
-  border: 2px solid rgba(0,0,0,0.1);
+}
+
+.login-form-group:not(:first-child) {
+  margin-top: 30px;
+}
+
+.login-form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.login-form-wrap {
+  padding: 10px 0;
+  border-bottom: 2px solid #d9d9d9;
   display: flex;
   align-items: center;
-  border-radius: 6px;
-  transition: all .5s;
 }
 
-.login-page-input input {
-  font-size: 16px;
-  margin-left: 10px;
+.login-form-icon {
+  color: #333;
+}
+
+.login-form-input {
   flex: 1;
-}
-
-.login-page-form .error {
-  font-size: 15px;
+  margin-left: 12px;
+  font-size: 16px;
   font-weight: bold;
-  color: #f75454;
-  margin-top: 8px;
+  color: #333;
 }
 
-.login-page-form .res-err {
+.login-form-group .error {
+  display: block;
+  margin-top: 10px;
+  color: #f75454;
+  font-weight: bold;
+}
+
+.login-form .res-err {
   font-size: 16px;
   font-weight: bold;
   display: block;
   width: 100%;
   text-align: center;
   color: #f75454;
-  margin: 6px 0;
+  margin-bottom: 20px;
 }
 
-.login-page-form button {
-  padding: 15px 30px;
-  margin: 20px 0;
-  background-color: #6dabe4;
+.login-form-btn {
+  width: 100%;
+  margin: 32px 0 20px;
+  padding: 15px 0;
+  background: -webkit-linear-gradient(right,#00dbde,#fc00ff);
   color: #fff;
-  font-size: 16px;
-  border-radius: 6px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 12px;
   cursor: pointer;
-  align-self: center;
-  transition: all .5s;
+  box-shadow: 0 5px 30px 0 rgb(3 216 222 / 20%);
+  opacity: 1;
+  transition: all .4s;
 }
 
-.login-page-form button:hover {
-  background-color: #4292dc;
-}
-
-.login-page-form a {
-  margin-top: 30px;
-  text-decoration: underline;
-}
-
-.login-page-form a:hover {
-  text-decoration: none;
-}
-
-@media screen and (max-width: 1023px) {
-  .login-page-container {
-    flex-direction: column;
-  }
-
-  .login-page-img img {
-    height: 0;
-  }
-
-  .login-page-img, .login-page-form {
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .login-page-img a {
-    margin-bottom: 10px;
-  }
-
-  .login-page-container {
-    width: 80%;
-    padding: 40px;
-  }
-
-  .login-page-form h3 {
-    font-size: 30px;
-  }
-}
-
-@media screen and (max-width: 479px) {
-  .login-page-form h3 {
-    font-size: 28px;
-  }
-
-  .login-page-container {
-    width: 90%;
-    padding: 30px 20px;
-  }
-
-  .login-page-input input {
-    font-size: 15px;
-  }
-
-  .login-page-form a {
-    margin-top: 20px;
-  }
-
-  .login-page-form button {
-    padding: 10px 25px;
-  }
+.login-form-btn:hover {
+  opacity: 0.8;
 }

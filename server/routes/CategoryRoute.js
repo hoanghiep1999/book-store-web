@@ -4,7 +4,7 @@ const router = express.Router();
 const CategoryModel = require('../models/Category');
 const verifyToken = require('../middleware/auth');
 
-router.get('/', verifyToken, async (req, res) => {
+router.get('/', async (req, res) => {
   await CategoryModel.find({}, (err, result) => {
     if(err)
       throw err;
@@ -16,7 +16,7 @@ router.get('/', verifyToken, async (req, res) => {
 })
 
 /* Lay thong tin category theo categoryID */
-router.get('/:id', verifyToken, async (req, res) => {
+router.get('/:id', async (req, res) => {
   await CategoryModel.find({categoryID: req.params.id}, (err, result) => {
     if(err)
       throw err;
