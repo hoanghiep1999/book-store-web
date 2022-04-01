@@ -107,6 +107,10 @@ export default function HomePage ({children}) {
                           "spaceBetween": 8
                         },
                         "480": {
+                          "slidesPerView": 2,
+                          "spaceBetween": 8
+                        },
+                        "648": {
                           "slidesPerView": 3,
                           "spaceBetween": 8
                         },

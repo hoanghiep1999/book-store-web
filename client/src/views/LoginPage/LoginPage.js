@@ -16,19 +16,6 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const inputParentElement = document.querySelectorAll('.login-page-input');
-    const inputElement = document.querySelectorAll('input');
-    inputElement.forEach((input, index) => {
-      input.addEventListener('focus', () => {
-        inputParentElement[index].style.border = '2px solid rgba(0,0,0,0.6)';
-      })
-      input.addEventListener('blur', () => {
-        inputParentElement[index].style.border = '2px solid rgba(0,0,0,0.1)';
-      })
-    });
-  }, []);
-
   const validation = () => {
     const message = {
       email: "",
@@ -96,7 +83,7 @@ export default function LoginPage() {
         <h2>Login</h2>
         <form className="login-form" onSubmit={submitForm}>
           <div className="login-form-group">
-            <label for="email" className="login-form-label">Email</label>
+            <label htmlFor="email" className="login-form-label">Email</label>
             <div className="login-form-wrap">
               <i className="fa-solid fa-envelope"></i>
               <input type="text" id="email" autoComplete="off" placeholder="Your email..." value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} className="login-form-input" />
@@ -104,7 +91,7 @@ export default function LoginPage() {
             <span className="error">{errMessage && errMessage.email}</span>
           </div>
           <div className="login-form-group">
-            <label for="password" className="login-form-label">Password</label>
+            <label htmlFor="password" className="login-form-label">Password</label>
             <div className="login-form-wrap">
               <i className="fa-solid fa-lock"></i>
               <input type="password" id="password" placeholder="Your password..." value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} className="login-form-input" />

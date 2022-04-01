@@ -104,7 +104,6 @@
   width: 100%;
   text-align: center;
   color: #f75454;
-  margin-bottom: 20px;
 }
 
 .login-form-btn {
@@ -125,4 +124,34 @@
 
 .login-form-btn:hover {
   opacity: 0.8;
+}
+
+@media screen and (max-width: 1023px) {
+  .login-page-container {
+    width: 60vw;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .login-page-container {
+    width: 70vw;
+  }
+
+  .login-page-container h2 {
+    margin: 25px 0 20px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .login-page-container {
+    width: 80vw;
+    padding: 50px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .login-page-container {
+    width: 80vw;
+    padding: 36px;
+  }
 }

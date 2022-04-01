@@ -16,19 +16,6 @@ export default function RegisterPage () {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const inputParentElement = document.querySelectorAll('.register-page-input');
-    const inputElement = document.querySelectorAll('input');
-    inputElement.forEach((input, index) => {
-      input.addEventListener('focus', () => {
-        inputParentElement[index].style.border = '2px solid rgba(0,0,0,0.6)';
-      })
-      input.addEventListener('blur', () => {
-        inputParentElement[index].style.border = '2px solid rgba(0,0,0,0.1)';
-      })
-    });
-  }, []);
-
   const validation = () => {
     const message = {
       name: "",
@@ -108,15 +95,15 @@ export default function RegisterPage () {
         <h2>Register</h2>
         <form className="register-form" onSubmit={submitForm}>
           <div className="register-form-group">
-            <label for="email" className="register-form-label">Name</label>
+            <label htmlFor="name" className="register-form-label">Name</label>
             <div className="register-form-wrap">
               <i className="fa-solid fa-envelope"></i>
-              <input type="text" id="email" autoComplete="off" placeholder="Your name..." value={registerName} onChange={(e) => setRegisterName(e.target.value)} className="register-form-input" />
+              <input type="text" id="name" autoComplete="off" placeholder="Your name..." value={registerName} onChange={(e) => setRegisterName(e.target.value)} className="register-form-input" />
             </div>
             <span className="error">{errMessage && errMessage.name}</span>
           </div>
           <div className="register-form-group">
-            <label for="email" className="register-form-label">Email</label>
+            <label htmlFor="email" className="register-form-label">Email</label>
             <div className="register-form-wrap">
               <i className="fa-solid fa-envelope"></i>
               <input type="text" id="email" autoComplete="off" placeholder="Your email..." value={registerEmail} onChange={(e) => setRegisterEmail(e.target.value)} className="register-form-input" />
@@ -124,7 +111,7 @@ export default function RegisterPage () {
             <span className="error">{errMessage && errMessage.email}</span>
           </div>
           <div className="register-form-group">
-            <label for="password" className="register-form-label">Password</label>
+            <label htmlFor="password" className="register-form-label">Password</label>
             <div className="register-form-wrap">
               <i className="fa-solid fa-lock"></i>
               <input type="password" id="password" placeholder="Your password..." value={registerPass} onChange={(e) => setRegisterPass(e.target.value)} className="register-form-input" />
@@ -132,10 +119,10 @@ export default function RegisterPage () {
             <span className="error">{errMessage && errMessage.pass}</span>
           </div>
           <div className="register-form-group">
-            <label for="password" className="register-form-label">Check password</label>
+            <label htmlFor="checkpassword" className="register-form-label">Check password</label>
             <div className="register-form-wrap">
               <i className="fa-solid fa-lock"></i>
-              <input type="password" id="password" placeholder="Your check password..." value={registerCheckPass} onChange={(e) => setRegisterCheckPass(e.target.value)} className="register-form-input" />
+              <input type="password" id="checkpassword" placeholder="Your check password..." value={registerCheckPass} onChange={(e) => setRegisterCheckPass(e.target.value)} className="register-form-input" />
             </div>
             <span className="error">{errMessage && errMessage.checkPass}</span>
           </div>
