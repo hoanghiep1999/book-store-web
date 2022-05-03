@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 const BookModel = require('../models/Book');
-const verifyToken = require('../middleware/auth');
 
 router.get('/', async (req, res) => {
   await BookModel.find({}, (err, result) => {

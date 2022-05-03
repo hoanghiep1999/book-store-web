@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 const CategoryModel = require('../models/Category');
-const verifyToken = require('../middleware/auth');
 
 router.get('/', async (req, res) => {
   await CategoryModel.find({}, (err, result) => {

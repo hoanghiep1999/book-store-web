@@ -1,14 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 const userModel = require('../models/User');
-const verifyToken = require('../middleware/auth');
 
-let refreshTokens = [];
-
-router.get('/', verifyToken, async (req, res) => {
+router.get('/', async (req, res) => {
   await userModel.find({}, (err, result) => {
     if(err) {
       throw err;
@@ -21,7 +17,7 @@ router.get('/', verifyToken, async (req, res) => {
 })
 
 /* test */
-router.get('/:id', verifyToken, async (req, res) => {
+router.get('/:id', async (req, res) => {
   const user = await userModel.findById(req.params.id);
   res.json(user);
 })
@@ -37,10 +33,7 @@ router.post('/login', async (req, res) => {
   else {
     bcrypt.compare(passWord, user.passWord, function(err, result) {
       if(result === true) {
-        const accessToken = jwt.sign({ email: email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s'});
-        const refreshToken = jwt.sign({ email: email }, process.env.REFRESH_TOKEN_SECRET);
-        refreshTokens.push(refreshToken);
-        res.json({email: email, accessToken, refreshToken});
+        res.json(user);
         console.log("Pass is correct!")
       }
       else {
@@ -64,10 +57,7 @@ router.post('/new', async (req, res) => {
       });
       try {
         await user.save();
-        const accessToken = jwt.sign({ email: email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s'});
-        const refreshToken = jwt.sign({ email: email }, process.env.REFRESH_TOKEN_SECRET);
-        refreshTokens.push(refreshToken);
-        res.json({email: email, accessToken, refreshToken});
+        res.json(user);
       }
       catch(err) {
         res.send("Cannot create new user!")
@@ -80,30 +70,6 @@ router.post('/new', async (req, res) => {
   } catch (err) {
     throw err;
   }
-})
-
-router.post('/auth/refreshToken', async (req, res) => {
-  const reqToken = req.body.token;
-  if(!reqToken) res.sendStatus(401);
-  else {
-    if(!refreshTokens.includes(reqToken)) res.sendStatus(403);
-    else {
-      jwt.verify(reqToken, process.env.REFRESH_TOKEN_SECRET, (err, data) => {
-        if(err)
-          res.sendStatus(403);
-        else {
-          const accessToken = jwt.sign({ email: data.email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '600s' });
-          res.json({ data, accessToken });
-        }
-      })
-    }
-  }
-})
-
-router.post('/auth/logout', async (req, res) => {
-  const reqToken = req.body.token;
-  refreshTokens = refreshTokens.filter(token => token !== reqToken);
-  res.sendStatus(200);
 })
 
 module.exports = router;
