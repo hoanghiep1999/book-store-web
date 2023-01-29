@@ -23,15 +23,14 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
-  const { email, passWord } = req.body;
   const resMessage = "Your email or password is not correct!";
-  const user = await userModel.findOne({email: email});
+  const user = await userModel.findOne({email: req.body.email});
   if (user === null) {
     res.send(resMessage);
     console.log("Cannot find user!")
   }
   else {
-    bcrypt.compare(passWord, user.passWord, function(err, result) {
+    bcrypt.compare(req.body.passWord, user.passWord, function(err, result) {
       if(result === true) {
         res.json(user);
         console.log("Pass is correct!")
@@ -46,22 +45,16 @@ router.post('/login', async (req, res) => {
 
 router.post('/new', async (req, res) => {
   try {
-    const { email, passWord } = req.body;
     const salt = await bcrypt.genSalt(10);
-    const hashedPassWord = await bcrypt.hash(passWord, salt);
-    const checkUser = await userModel.findOne({email: email});
+    const hashedPassWord = await bcrypt.hash(req.body.passWord, salt);
+    const checkUser = await userModel.findOne({email: req.body.email});
     if (checkUser === null) {
       const user = new userModel({
         ...req.body,
         passWord: hashedPassWord
       });
-      try {
-        await user.save();
-        res.json(user);
-      }
-      catch(err) {
-        res.send("Cannot create new user!")
-      }
+      await user.save();
+      res.json(user);
     }
     else {
       res.send("This email is already created!");
