@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Card from '../../components/Card/Card';
 import Loading from '../../components/Loading/Loading';
+import { baseUrl } from '../../commons/constants';
 
 import { Link, useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
@@ -41,12 +42,12 @@ export default function CategoryPage ({children}) {
   const numGroup = 8;
 
   useEffect(() => {
-    axios.get('https://dhh-book-store-app.herokuapp.com/api/category').then(res => {
+    axios.get(`${baseUrl}/api/category`).then(res => {
       setCategories(res.data);
     }).catch(err => {
       throw err;
     });
-    axios.get(`https://dhh-book-store-app.herokuapp.com/api/category/${id}`).then(res => {
+    axios.get(`${baseUrl}/api/category/${id}`).then(res => {
       setBooks([]);
       setCategory(...res.data);
     }).catch(err => {
@@ -55,7 +56,7 @@ export default function CategoryPage ({children}) {
   }, [id, name]);
 
   useEffect(() => {
-    axios.get(`https://dhh-book-store-app.herokuapp.com/api/book/list/${category && category.categoryID}`).then(res => {
+    axios.get(`${baseUrl}/api/book/list/${category && category.categoryID}`).then(res => {
       setBooks(res.data);
     }).catch(err => {
       throw err;
@@ -72,7 +73,7 @@ export default function CategoryPage ({children}) {
       setBooks([...newBooks]);
     }
     if(sort === "None") {
-      axios.get(`https://dhh-book-store-app.herokuapp.com/api/book/list/${category && category.categoryID}`).then(res => {
+      axios.get(`${baseUrl}/api/book/list/${category && category.categoryID}`).then(res => {
         setBooks(res.data);
       }).catch(err => {
         throw err;

@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Card from '../../components/Card/Card';
 import Loading from '../../components/Loading/Loading';
+import { baseUrl } from '../../commons/constants';
 
 import './DetailPage.css';
 
@@ -26,7 +27,7 @@ export default function DetailPage ({children}) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios.get(`https://dhh-book-store-app.herokuapp.com/api/book/${id}`).then(res => {
+    axios.get(`${baseUrl}/api/book/${id}`).then(res => {
       setBook(res.data);
     });
 
@@ -39,10 +40,10 @@ export default function DetailPage ({children}) {
   }, [id]);
 
   useEffect(() => {
-    axios.get(`https://dhh-book-store-app.herokuapp.com/api/book/list/${book && book.categoryID}`).then(res => {
+    axios.get(`${baseUrl}/api/book/list/${book && book.categoryID}`).then(res => {
       setBooklist(res.data);
     });
-    axios.get(`https://dhh-book-store-app.herokuapp.com/api/category/${book && book.categoryID}`).then(res => {
+    axios.get(`${baseUrl}/api/category/${book && book.categoryID}`).then(res => {
       setCategory(...res.data);
     });
   }, [book]);

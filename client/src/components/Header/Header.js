@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import SearchBox from '../SearchBox/SearchBox';
 import logo from '../../assets/images/logo.svg';
+import { baseUrl } from '../../commons/constants';
 import './Header.css';
 
 import { Link, useLocation } from 'react-router-dom';
@@ -23,7 +24,7 @@ export default function Header () {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    axios.get('https://dhh-book-store-app.herokuapp.com/api/category').then(res => {
+    axios.get(`${baseUrl}/api/category`).then(res => {
       setCategories(res.data);
     }).catch(err => {
       throw err;

@@ -4,6 +4,7 @@ import Banner from '../../components/Banner/Banner';
 import Footer from '../../components/Footer/Footer';
 import Card from '../../components/Card/Card';
 import Loading from '../../components/Loading/Loading';
+import { baseUrl } from '../../commons/constants';
 
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -43,13 +44,13 @@ export default function HomePage ({children}) {
 
   useEffect(() => {
     setLoading(true);
-    axios.get('https://dhh-book-store-app.herokuapp.com/api/category').then(res => {
+    axios.get(`${baseUrl}/api/category`).then(res => {
       setCategories(res.data);
     }).catch(err => {
       throw err;
     });
 
-    axios.get('https://dhh-book-store-app.herokuapp.com/api/book').then(res => {
+    axios.get(`${baseUrl}/api/book`).then(res => {
       setBooks(res.data);
       setLoading(false);
     }).catch(err => {

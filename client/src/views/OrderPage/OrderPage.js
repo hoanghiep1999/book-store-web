@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Loading from '../../components/Loading/Loading';
+import { baseUrl } from '../../commons/constants';
 
 import './OrderPage.css';
 
@@ -15,7 +16,7 @@ export default function OrderPage ({children}) {
   const user = useSelector(state => state.user)
 
   useEffect(() => {
-    axios.get(`https://dhh-book-store-app.herokuapp.com/api/order/${id}`)
+    axios.get(`${baseUrl}/api/order/${id}`)
       .then(res => setTimeout(() => setOrderData(res.data), 2500))
       .catch(err => {
         throw err;

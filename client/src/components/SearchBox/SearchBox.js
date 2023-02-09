@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { baseUrl } from '../../commons/constants';
 import './SearchBox.css';
 
 import { Link } from 'react-router-dom';
@@ -16,7 +17,7 @@ export default function SearchBox () {
 
   useEffect(() => {
     if (keyWord !== "") {
-      axios.get(`https://dhh-book-store-app.herokuapp.com/api/book/search/${keyWord && keyWord}`)
+      axios.get(`${baseUrl}/api/book/search/${keyWord && keyWord}`)
       .then(res => setSearchList([...res.data]))
       .catch(err => { throw err; })
     }
